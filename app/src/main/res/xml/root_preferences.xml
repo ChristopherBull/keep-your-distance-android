@@ -1,0 +1,25 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Detection">
+        <SwitchPreferenceCompat
+            app:key="@string/pref_key_detection_enabled"
+            app:title="@string/pref_title_detection_enabled"
+            app:defaultValue="false"
+            app:summaryOn="@string/pref_summaryon_detection_enabled"
+            app:summaryOff="@string/pref_summaryoff_detection_enabled"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="Auto Start/Stop Detection"
+        app:summary="Options to automatically start and stop detection service. ">
+        <SwitchPreferenceCompat
+            app:key="auto_start_detection"
+            app:title="Auto start/stop Detection"
+            app:defaultValue="false" />
+    </PreferenceCategory>
+
+<!--    <Preference-->
+<!--        app:title="Advanced settings"-->
+<!--        app:fragment="com.example.SyncFragment" />-->
+
+</PreferenceScreen>

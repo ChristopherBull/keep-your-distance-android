@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Keep Your Distance</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="notification_title_service_running">Listening for Other Devices</string>
+    <string name="notification_text_service_running">Tap to turn off</string>
+    <string name="notification_text_device_detected">A wireless device is detected close to you.</string>
+    <string name="notification_title_device_detected">Device Too Close</string>
+    <string name="notification_channel_name_detection_service">Proximity Service</string>
+    <string name="notification_channel_description_detection_service">Background service for detecting device proximity to this device</string>
+    <string name="pref_key_detection_enabled">detection_enabled</string>
+    <string name="pref_title_detection_enabled">Detection Service</string>
+    <string name="pref_summaryon_detection_enabled">Enabled - auto start/stop allowed</string>
+    <string name="pref_summaryoff_detection_enabled">Disabled - will not auto start</string>
+    <string name="fragment_name_settings">Settings</string>
+</resources>

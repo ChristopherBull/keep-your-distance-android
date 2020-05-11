@@ -10,9 +10,11 @@
     <string name="notification_channel_description_detection_service">Background service for detecting device proximity to this device</string>
 
     <!-- Preferences -->
+    <string name="pref_category_detection">Detection</string>
     <string name="pref_category_appearance">Appearance</string>
+    <!-- Preference: Detection -->
     <string name="pref_key_detection_enabled">detection_enabled</string>
-    <string name="pref_title_detection_enabled">Detection Service</string>
+    <string name="pref_title_detection_enabled">Background Detection</string>
     <string name="pref_summaryon_detection_enabled">Enabled - auto start/stop allowed</string>
     <string name="pref_summaryoff_detection_enabled">Disabled - will not auto start</string>
     <!-- Preference: Theme -->

@@ -9,14 +9,17 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
+import androidx.navigation.findNavController
+import androidx.navigation.ui.*
 import androidx.preference.PreferenceManager
 import caffeinatedandroid.keepyourdistance.data.PreferencesHelper
-import caffeinatedandroid.keepyourdistance.media.AppNotificationManager
 import caffeinatedandroid.keepyourdistance.media.AudioManager
 import caffeinatedandroid.keepyourdistance.service.ProximityDetection
-import caffeinatedandroid.keepyourdistance.ui.main.MainFragment
 
-
+/**
+ * The main Activity entry point for this application.
+ */
 class MainActivity : AppCompatActivity() {
 
     // TODO use `WorkManager` to schedule a ping to check health of service (i.e., check if the OS has killed it)
@@ -25,20 +28,22 @@ class MainActivity : AppCompatActivity() {
     // TODO start service at boot (with internal preference check that it should indeed be started).
     // TODO add a delay to starting service after device boot (60 seconds) - allow device to warm up faster; add advanced pref in user settings
 
+    /**
+     * Prepare this [MainActivity]
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
 
         // Load preferred theme
         loadTheme()
 
         // Set custom Toolbar
         setSupportActionBar(findViewById(R.id.toolbar))
+        // Enable Toolbar integration with NavigationUI (e.g., auto-show back navigation)
+        val navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
 
         // Start the detection service if user has enabled it
         if (PreferencesHelper.isDetectionEnabled(this)) {
@@ -47,6 +52,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Prepare the toolbar's [Menu]
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
@@ -60,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.settings -> {
                 // Open settings Fragment
-                // TODO
+                findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_settingsFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

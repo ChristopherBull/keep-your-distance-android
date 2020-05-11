@@ -4,8 +4,6 @@
 
     <item
         android:id="@+id/settings"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/fragment_name_settings"
-        app:showAsAction="ifRoom" />
+        android:title="@string/fragment_name_settings" />
 
 </menu>

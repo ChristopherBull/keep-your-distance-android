@@ -18,6 +18,18 @@
             app:defaultValue="false" />
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/pref_category_appearance">
+        <ListPreference
+            app:defaultValue="@string/pref_value_theme_system_default"
+            app:dialogTitle="@string/pref_title_theme"
+            app:entries="@array/pref_theme_entries"
+            app:entryValues="@array/pref_theme_entry_values"
+            app:icon="@drawable/ic_theme_light_or_dark_24dp"
+            app:key="@string/pref_key_theme"
+            app:title="@string/pref_title_theme"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
 <!--    <Preference-->
 <!--        app:title="Advanced settings"-->
 <!--        app:fragment="com.example.SyncFragment" />-->

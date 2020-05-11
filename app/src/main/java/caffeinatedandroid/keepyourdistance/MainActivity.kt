@@ -8,6 +8,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import caffeinatedandroid.keepyourdistance.data.PreferencesHelper
 import caffeinatedandroid.keepyourdistance.media.AppNotificationManager
 import caffeinatedandroid.keepyourdistance.media.AudioManager
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, MainFragment.newInstance())
                 .commitNow()
         }
+
+        // Load preferred theme
+        loadTheme()
 
         // Start the detection service if user has enabled it
         if (PreferencesHelper.isDetectionEnabled(this)) {
@@ -56,6 +61,34 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    /**
+     * Sets the global theme (light/dark) based on preference setting.
+     */
+    fun loadTheme() {
+        PreferenceManager.getDefaultSharedPreferences(applicationContext).apply {
+            when (getString(
+                resources.getString(R.string.pref_key_theme),
+                resources.getString(R.string.pref_value_theme_system_default)
+            )) {
+                resources.getString(R.string.pref_value_theme_light) -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                }
+                resources.getString(R.string.pref_value_theme_dark) -> {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+                else -> {
+                    // Preference unspecified. Apply system default theme based on OS version:
+                    // https://developer.android.com/guide/topics/ui/look-and-feel/darktheme
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
+                    }
+                }
+            }
         }
     }
 

@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         // Load preferred theme
         loadTheme()
 
+        // Set custom Toolbar
+        setSupportActionBar(findViewById(R.id.toolbar))
+
         // Start the detection service if user has enabled it
         if (PreferencesHelper.isDetectionEnabled(this)) {
             // TODO what happens if service already running?

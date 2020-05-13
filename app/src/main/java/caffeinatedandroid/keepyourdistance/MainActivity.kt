@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
@@ -43,7 +45,10 @@ class MainActivity : AppCompatActivity() {
         // Enable Toolbar integration with NavigationUI (e.g., auto-show back navigation)
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
-        findViewById<Toolbar>(R.id.toolbar).setupWithNavController(navController, appBarConfiguration)
+        findViewById<Toolbar>(R.id.toolbar).setupWithNavController(
+            navController,
+            appBarConfiguration
+        )
 
         // Start the detection service if user has enabled it
         if (PreferencesHelper.isDetectionEnabled(this)) {
@@ -68,7 +73,8 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.settings -> {
                 // Open settings Fragment
-                findNavController(R.id.nav_host_fragment).navigate(R.id.action_mainFragment_to_settingsFragment)
+                findNavController(R.id.nav_host_fragment)
+                    .navigate(R.id.action_mainFragment_to_settingsFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -94,16 +100,16 @@ class MainActivity : AppCompatActivity() {
                     // Preference unspecified. Apply system default theme based on OS version:
                     // https://developer.android.com/guide/topics/ui/look-and-feel/darktheme
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
                     } else {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
+                        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_AUTO_BATTERY)
                     }
                 }
             }
         }
     }
 
-    fun startProximityAlertService(view: View?) {
+    fun startProximityAlertService(@Suppress("UNUSED_PARAMETER") view: View?) {
 //        Log.d("Proximity", "Activity: Starting service")
 //        Toast.makeText(applicationContext, "Test: start service", Toast.LENGTH_LONG).show()
         val intent = Intent(applicationContext, ProximityDetection::class.java)
@@ -114,13 +120,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun stopProximityAlertService(view: View?) {
+    fun stopProximityAlertService(@Suppress("UNUSED_PARAMETER") view: View?) {
 //        Log.d("Proximity", "Activity: Stopping service")
 //        Toast.makeText(applicationContext, "Test: stop service", Toast.LENGTH_LONG).show()
         stopService(Intent(applicationContext, ProximityDetection::class.java))
     }
 
-    fun tempTestPlayAudio(view: View?) {
+    fun tempTestPlayAudio(@Suppress("UNUSED_PARAMETER") view: View?) {
         AudioManager.playAudio(applicationContext, true)
     }
 }

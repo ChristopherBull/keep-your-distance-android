@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ToolbarTheme" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Color of navigation drawer icon, back arrow, etc -->
+        <item name="colorControlNormal">@color/toolbarTitleTextColor</item>
+    </style>
+
 </resources>

@@ -5,11 +5,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="materialButtonStyle">@style/ButtonStyle</item>
     </style>
 
-    <style name="ToolbarTheme" parent="@style/Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="ToolbarTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Color of navigation drawer icon, back arrow, etc -->
         <item name="colorControlNormal">@color/toolbarTitleTextColor</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <!-- Force an always white text color (as button color is dark for Day/Night) -->
+        <item name="android:textColor">@color/buttonTextColor</item>
     </style>
 
 </resources>

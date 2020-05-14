@@ -32,8 +32,12 @@
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
-<!--    <Preference-->
-<!--        app:title="Advanced settings"-->
-<!--        app:fragment="com.example.SyncFragment" />-->
+    <PreferenceCategory>
+
+        <Preference
+            app:title="Advanced settings"
+            app:fragment="caffeinatedandroid.keepyourdistance.ui.settings.AdvancedSettingsFragment" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

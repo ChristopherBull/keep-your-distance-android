@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import caffeinatedandroid.keepyourdistance.data.PreferencesHelper
 import caffeinatedandroid.keepyourdistance.media.AudioManager
@@ -22,7 +24,8 @@ import caffeinatedandroid.keepyourdistance.service.ProximityDetection
 /**
  * The main Activity entry point for this application.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     // TODO use `WorkManager` to schedule a ping to check health of service (i.e., check if the OS has killed it)
     // TODO if using `WorkManager` add/remove/start/stop it along with the service directly (avoid Service restarting after being stopped)
@@ -107,6 +110,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onPreferenceStartFragment(
+        caller: PreferenceFragmentCompat,
+        pref: Preference
+    ): Boolean {
+        // TODO do conditional navigation (currently, all navigable preferences go to this one)
+        findNavController(R.id.nav_host_fragment)
+            .navigate(R.id.action_settingsFragment_to_advancedSettingsFragment)
+        return true
     }
 
     fun startProximityAlertService(@Suppress("UNUSED_PARAMETER") view: View?) {

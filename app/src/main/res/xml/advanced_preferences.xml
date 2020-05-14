@@ -1,0 +1,13 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.settings.AdvancedSettingsFragment">
+
+    <SeekBarPreference
+        app:defaultValue="-20"
+        app:min="-120"
+        android:max="0"
+        app:showSeekBarValue="true"
+        app:title="Signal strength threshold (RSSI)" />
+
+</PreferenceScreen>

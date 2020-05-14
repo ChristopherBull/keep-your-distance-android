@@ -29,4 +29,5 @@
 
     <!-- Fragments -->
     <string name="fragment_name_settings">Settings</string>
+    <string name="fragment_name_settings_advanced">Advanced Settings</string>
 </resources>

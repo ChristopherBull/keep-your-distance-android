@@ -17,5 +17,13 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="caffeinatedandroid.keepyourdistance.ui.settings.SettingsFragment"
-        android:label="@string/fragment_name_settings" />
+        android:label="@string/fragment_name_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_advancedSettingsFragment"
+            app:destination="@id/advancedSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/advancedSettingsFragment"
+        android:name="caffeinatedandroid.keepyourdistance.ui.settings.AdvancedSettingsFragment"
+        android:label="@string/fragment_name_settings_advanced" />
 </navigation>

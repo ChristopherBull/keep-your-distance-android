@@ -2,7 +2,6 @@ package caffeinatedandroid.keepyourdistance.ui.settings
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -12,7 +11,7 @@ import caffeinatedandroid.keepyourdistance.R
 /**
  * The root Settings [PreferenceFragmentCompat].
  */
-class SettingsFragment : PreferenceFragmentCompat(),
+class SettingsFragment : NoOptionsMenuPreferenceFragment(),
     SharedPreferences.OnSharedPreferenceChangeListener {
 
     /**
@@ -20,16 +19,6 @@ class SettingsFragment : PreferenceFragmentCompat(),
      */
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-    }
-
-    /**
-     * Called when creating the [PreferenceFragmentCompat].
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Hide Options Menu - used in combination with `menu.clear()` in `onPrepareOptionsMenu`
-        setHasOptionsMenu(true)
     }
 
     /**
@@ -63,16 +52,6 @@ class SettingsFragment : PreferenceFragmentCompat(),
         // Disable preference change listener
         PreferenceManager.getDefaultSharedPreferences(context)
             .unregisterOnSharedPreferenceChangeListener(this)
-    }
-
-    /**
-     * Hide the Options [Menu] whilst viewing the Settings Fragment.
-     */
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
-
-        // Hide Options Menu - used in combination with `setHasOptionsMenu(true)` in `onCreate`
-        menu.clear()
     }
 
     /**
